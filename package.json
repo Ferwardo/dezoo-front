@@ -1,0 +1,22 @@
+{
+  "name": "dezoo-front",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ferwardo/dezoo-front.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ferwardo/dezoo-front/issues"
+  },
+  "homepage": "https://github.com/Ferwardo/dezoo-front#readme",
+  "dependencies": {
+    "bootstrap": "^4.5.3"
+  }
+}
