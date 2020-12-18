@@ -35,12 +35,9 @@
 	</nav>
 
 	<main class="container">
-		<h1>De Zoo</h1>
-		<p>Op deze pagina kunt u onze zoo api aanspreken.</p>
-
 		<div id="dieren">
 			<h2>Dieren</h2>
-			Hieronder kunt u de dieren bekijken, bewerken nieuwe dieren toevoegen of verwijderen.
+			<button class="btn btn-success mt-2">Nieuw Dier</button>
 			<table id="animalTable" class="table table-striped">
 				<thead>
 					<tr>
@@ -56,8 +53,8 @@
 		</div>
 		<div id="verblijven" class="mt-3">
 			<h2>Verblijven</h2>
-			Hieronder kunt u de verblijven bekijken, bewerken, nieuwe verblijven toevoegen of verwijderen.
-			<table id="animalTable" class="table table-striped">
+			<button class="btn btn-success mt-2">Nieuw verblijf</button>
+			<table id="residencesTable" class="table table-striped">
 				<thead>
 					<tr>
 						<th>#</th>
@@ -72,31 +69,23 @@
 		</div>
 		<div id="personeel" class="mt-3">
 			<h2>Personeel</h2>
-			Hieronder kunt u de personeelsleden bekijken, bewerken, nieuwe personeelslid toevoegen of verwijderen.
-			<table id="animalTable" class="table table-striped">
+			<button class="btn btn-success mt-2">Nieuw Personeelslid</button>
+			<table id="personnelTable" class="table table-striped">
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Personeels categorie</th>
 						<th>Voornaam</th>
 						<th>Naam</th>
 						<th>Geboortedatum</th>
 						<th>Adres</th>
 						<th>Postcode</th>
 						<th>Telefoon nummer</th>
+						<th>Afdeling</th>
+						<th>Acties
+						</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>fs161100</td>
-						<td>Administratie</td>
-						<td>Ferre</td>
-						<td>Snyers</td>
-						<td>16/11/2000</td>
-						<td>Gestelstraat 21</td>
-						<td>2250</td>
-						<td>+32 498/44 14 39</td>
-					</tr>
 				</tbody>
 			</table>
 		</div>
@@ -106,13 +95,8 @@
 		integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
 		crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://kit.fontawesome.com/5aea04f3db.js" crossorigin="anonymous"></script>
 	<script src="./js/index.js"></script>
-	<script>
-		// $(function () {
-		// 	getPersoneel();
-		// 	console.log("test")
-		// })
-	</script>
 </body>
 
 </html>
