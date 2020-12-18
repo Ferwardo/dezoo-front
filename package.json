@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/Ferwardo/dezoo-front#readme",
   "dependencies": {
-    "bootstrap": "^4.5.3"
+    "bootstrap": "^4.5.3",
+    "browser-sync": "^2.26.13",
+    "gulp": "^4.0.2",
+    "gulp-cli": "^2.3.0",
+    "gulp-sass": "^4.1.0"
   }
 }
