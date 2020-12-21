@@ -24,10 +24,13 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="#">Home</a>
+						<a class="nav-link active" aria-current="page" href="#dieren">Dieren</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="#dieren">Dieren</a>
+						<a class="nav-link active" aria-current="page" href="#verblijven">Verblijven</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="#personeel">Personeel</a>
 					</li>
 				</ul>
 			</div>
@@ -37,7 +40,8 @@
 	<main class="container">
 		<div id="dieren">
 			<h2>Dieren</h2>
-			<button class="btn btn-success mt-2">Nieuw Dier</button>
+			<button class="btn btn-success mt-2" data-bs-toggle="modal" data-bs-target="#animalModal">Nieuw
+				Dier</button>
 			<table id="animalTable" class="table table-striped">
 				<thead>
 					<tr>
@@ -50,10 +54,30 @@
 				<tbody>
 				</tbody>
 			</table>
+			<div class="modal fade" id="animalModal" tabindex="-1">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Nieuw Dier</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<form>
+
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sluiten</button>
+							<button type="button" class="btn btn-success">Opslaan</button>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div id="verblijven" class="mt-3">
 			<h2>Verblijven</h2>
-			<button class="btn btn-success mt-2">Nieuw verblijf</button>
+			<button class="btn btn-success mt-2" data-bs-toggle="modal" data-bs-target="#residenceModal">Nieuw
+				verblijf</button>
 			<table id="residencesTable" class="table table-striped">
 				<thead>
 					<tr>
@@ -66,10 +90,30 @@
 				<tbody>
 				</tbody>
 			</table>
+			<div class="modal fade" id="residenceModal" tabindex="-1">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Nieuw Verblijf</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<form>
+
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sluiten</button>
+							<button type="button" class="btn btn-success">Opslaan</button>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div id="personeel" class="mt-3">
 			<h2>Personeel</h2>
-			<button class="btn btn-success mt-2">Nieuw Personeelslid</button>
+			<button data-bs-toggle="modal" data-bs-target="#personnelModal" class="btn btn-success mt-2">Nieuw
+				Personeelslid</button>
 			<table id="personnelTable" class="table table-striped">
 				<thead>
 					<tr>
@@ -79,7 +123,7 @@
 						<th>Geboortedatum</th>
 						<th>Adres</th>
 						<th>Postcode</th>
-						<th>Telefoon nummer</th>
+						<th>Telefoonnummer</th>
 						<th>Afdeling</th>
 						<th>Acties
 						</th>
@@ -88,6 +132,63 @@
 				<tbody>
 				</tbody>
 			</table>
+			<div class="modal fade" id="personnelModal" tabindex="-1">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Nieuw Personeelslid</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<form onsubmit="">
+							<div class="modal-body">
+								<div class="form-floating mb-3">
+									<input type="text" class="form-control" id="firstName" placeholder="Voornaam"
+										required>
+									<label for="firstName">Voornaam</label>
+								</div>
+								<div class="form-floating mb-3">
+									<input type="text" class="form-control" id="lastName" placeholder="Familienaam"
+										required>
+									<label for="lastName">Familienaam</label>
+								</div>
+								<div class="form-floating mb-3">
+									<input type="date" class="form-control" id="dateOfBirth" required>
+									<label for="dateOfBirth">Geboortedatum</label>
+								</div>
+								<div class="form-floating mb-3">
+									<input type="text" class="form-control" id="address" placeholder="Adres" required>
+									<label for="address">Adres</label>
+								</div>
+								<div class="form-floating mb-3">
+									<input type="number" class="form-control" id="postalCode" placeholder="Postcode"
+										required>
+									<label for="postalCode">Postcode</label>
+								</div>
+								<div class="form-floating mb-3">
+									<input type="number" class="form-control" id="telephoneNumber"
+										placeholder="Telefoonnummer" required>
+									<label for="telephoneNumber">Telefoonnummer</label>
+								</div>
+								<div class="form-floating mb-3">
+									<select class="form-select" id="personnelCategory" aria-label="Afdeling">
+										<option value="notChosen" selected>Kies een afdeling</option>
+										<option value="Administratie">Administratie</option>
+										<option value="Leeuwen">Leeuwen</option>
+										<option value="Konijnen">Konijnen</option>
+										<option value="Tijgers">Tijgers</option>
+										<option value="Olifanten">Olifanten</option>
+									</select>
+									<label for="personnelCategory">Afdeling</label>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sluiten</button>
+								<button type="submit" class="btn btn-success">Opslaan</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>
 	</main>
 
