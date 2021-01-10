@@ -46,9 +46,12 @@
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Still</th>
-						<th>To</th>
-						<th>Do</th>
+						<th>Naam</th>
+						<th>Soort</th>
+						<th>Geboortedatum</th>
+						<th>Gewervelde</th>
+						<th>Klasse</th>
+						<th>Acties</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -61,15 +64,36 @@
 							<h5 class="modal-title">Nieuw Dier</h5>
 							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
-						<div class="modal-body">
-							<form>
-
-							</form>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sluiten</button>
-							<button type="button" class="btn btn-success">Opslaan</button>
-						</div>
+						<form onsubmit="postOrPutAnimal()">
+							<div class="modal-body">
+								<div class="form-floating mb-3">
+									<input type="text" class="form-control" id="name" placeholder="Naam" required>
+									<label for="name">Naam *</label>
+								</div>
+								<div class="form-floating mb-3">
+									<input type="text" class="form-control" id="species" placeholder="Soort" required>
+									<label for="species">Soort * </label>
+								</div>
+								<div class="form-floating mb-3">
+									<input type="date" class="form-control" id="dateOfBirth" required>
+									<label for="dateOfBirth">Geboortedatum</label>
+								</div>
+								<div class="form-floating mb-3">
+									<input type="text" class="form-control" id="class" placeholder="Klasse" required>
+									<label for="class">Klasse *</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="vertebrate">
+									<label class="form-check-label" for="vertebrate">
+										is gewerveld
+									</label>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sluiten</button>
+								<button type="submit" class="btn btn-success">Opslaan</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -78,13 +102,23 @@
 			<h2>Verblijven</h2>
 			<button class="btn btn-success mt-2" data-bs-toggle="modal" data-bs-target="#residenceModal">Nieuw
 				verblijf</button>
+			<div class="form-floating mb-3 mt-3">
+				<select class="form-select" id="personnelMemberResidence" aria-label="Afdeling"
+					onchange="getResidences()">
+					<option value="notChosen" selected>Kies een personeelslid</option>
+				</select>
+				<label for="personnelMemberResidence">Onderhoudend personeelslid</label>
+			</div>
 			<table id="residencesTable" class="table table-striped">
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Still</th>
-						<th>To</th>
-						<th>Do</th>
+						<th>Naam</th>
+						<th>Id bewonend dier</th>
+						<th>Maximum aantal dieren</th>
+						<th>Bouwjaar</th>
+						<th>Nachtverblijf</th>
+						<th>Acties</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -97,15 +131,44 @@
 							<h5 class="modal-title">Nieuw Verblijf</h5>
 							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
-						<div class="modal-body">
-							<form>
-
-							</form>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sluiten</button>
-							<button type="button" class="btn btn-success">Opslaan</button>
-						</div>
+						<form onsubmit="postOrPutResidence()">
+							<div class="modal-body">
+								<div class="form-floating mb-3">
+									<input type="text" class="form-control" id="residenceID" placeholder="VerblijfsId"
+										required>
+									<label for="name">VerblijfsId *</label>
+								</div>
+								<div class="form-floating mb-3">
+									<input type="text" class="form-control" id="name" placeholder="Naam" required>
+									<label for="name">Naam *</label>
+								</div>
+								<div class="form-floating mb-3">
+									<input type="text" class="form-control" id="animalID" placeholder="Id bewonend dier"
+										required>
+									<label for="species">Id bewonend dier * </label>
+								</div>
+								<div class="form-floating mb-3">
+									<input type="text" class="form-control" id="maxAnimals"
+										placeholder="Maximum aantal dieren" required>
+									<label for="maxAnimals">Maximum aantal dieren</label>
+								</div>
+								<div class="form-floating mb-3">
+									<input type="text" class="form-control" id="buildYear" placeholder="Bouwjaar"
+										required>
+									<label for="class">Bouwjaar *</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="nocturnal">
+									<label class="form-check-label" for="nocturnal">
+										is nachtverblijf
+									</label>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sluiten</button>
+								<button type="submit" class="btn btn-success">Opslaan</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -139,17 +202,17 @@
 							<h5 class="modal-title">Nieuw Personeelslid</h5>
 							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
-						<form onsubmit="">
+						<form onsubmit="postOrPutPersonnel()">
 							<div class="modal-body">
 								<div class="form-floating mb-3">
 									<input type="text" class="form-control" id="firstName" placeholder="Voornaam"
 										required>
-									<label for="firstName">Voornaam</label>
+									<label for="firstName">Voornaam *</label>
 								</div>
 								<div class="form-floating mb-3">
 									<input type="text" class="form-control" id="lastName" placeholder="Familienaam"
 										required>
-									<label for="lastName">Familienaam</label>
+									<label for="lastName">Familienaam * </label>
 								</div>
 								<div class="form-floating mb-3">
 									<input type="date" class="form-control" id="dateOfBirth" required>
@@ -166,7 +229,7 @@
 								</div>
 								<div class="form-floating mb-3">
 									<input type="number" class="form-control" id="telephoneNumber"
-										placeholder="Telefoonnummer" required>
+										placeholder="Telefoonnummer">
 									<label for="telephoneNumber">Telefoonnummer</label>
 								</div>
 								<div class="form-floating mb-3">
