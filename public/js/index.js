@@ -20,10 +20,20 @@ $(() => {
         $("#animalModal").find(".modal-title").html("Nieuw Dier");
         $("#animalModal").find("#name").val("");
         $("#animalModal").find("#species").val("");
-        //months and day need an extra 0 in front of them to work, also somehow months are 1 month to early so it adds one to get the right month and date.
         $("#animalModal").find("#dateOfBirth").val("");
         $("#animalModal").find("#class").val("");
         $("#animalModal").find("#vertebrate").prop("checked", false);
+    })
+
+    let residenceModal = document.getElementById("residenceModal");
+    residenceModal.addEventListener("hidden.bs.modal", (event) => {
+        $("#residenceModal").find(".modal-title").html("Nieuw Verblijf");
+        $("#residenceModal").find("#residenceID").val("");
+        $("#residenceModal").find("#name").val("");
+        $("#residenceModal").find("#animalID").val("")
+        $("#residenceModal").find("#maxAnimals").val("")
+        $("#residenceModal").find("#buildYear").val("")
+        $("#residenceModal").find("#nocturnal").prop("checked", false);
     })
 
 })
@@ -33,6 +43,7 @@ let url = "http://localhost:8050";
 //set this to true when editing
 let editing = false;
 let editingAnimal;
+let editingPeronnel;
 
 let openModal = (modalName) => {
     //make a new js bootstrap modal from the modalName given and show it.
@@ -80,7 +91,7 @@ let getAnimals = () => {
 //edit animal
 let editAnimal = (obj) => {
     editing = true
-    editAnimal = obj
+    editingAnimal = obj
     $("#animalModal").find(".modal-title").html("Bewerk Dier");
     //set the field to the values fo the selected personnelMember
     var dob = new Date($(obj).parent().parent().parent().children().eq(3).html().split("/").reverse().join("-"))
@@ -125,7 +136,7 @@ let postOrPutAnimal = () => {
         })
     }
     else {
-        animal.animalId = $(editAnimal).parent().parent().parent().children().eq(0).html();
+        animal.animalId = $(editingAnimal).parent().parent().parent().children().eq(0).html();
         $.ajax({
             url: url + "/dieren/" + animal.animalId,
             data: JSON.stringify(animal),
@@ -280,7 +291,7 @@ let postOrPutPersonnel = () => {
     let personnelID = `${$("#personnelModal").find("#firstName").val().slice(0, 1).toLowerCase()}${$("#personnelModal").find("#lastName").val().slice(0, 1).toLowerCase()}${$("#personnelModal").find("#dateOfBirth").val().slice(-2).toLowerCase()}${month < 10 ? "0" + month : month}${$("#personnelModal").find("#dateOfBirth").val().slice(2, 4).toLowerCase()}`
 
     let personnelMember = {
-        personnelId: personnelID,
+        personnelId: "",
         firstName: $("#personnelModal").find("#firstName").val(),
         lastName: $("#personnelModal").find("#lastName").val(),
         dateOfBirth: $("#personnelModal").find("#dateOfBirth").val(),
@@ -291,6 +302,7 @@ let postOrPutPersonnel = () => {
     }
 
     if (!editing) {
+        personnelMember.personnelId = personnelID;
         $.ajax({
             url: url + "/personeel",
             data: JSON.stringify(personnelMember),
@@ -305,6 +317,7 @@ let postOrPutPersonnel = () => {
         })
     }
     else {
+        personnelMember.personnelId = $(editingPeronnel).parent().parent().parent().children().eq(0).html();
         $.ajax({
             url: url + "/personeel",
             data: JSON.stringify(personnelMember),
@@ -333,10 +346,12 @@ let editPersonnel = (obj) => {
     $("#personnelModal").find("#dateOfBirth").val(dob.getFullYear() + "-" + (dob.getMonth() >= 9 ? (dob.getMonth() + 1) : "0" + (dob.getMonth() + 1)) + "-" + (dob.getDate() >= 10 ? dob.getDate() : "0" + dob.getDate()));
     $("#personnelModal").find("#address").val($(obj).parent().parent().parent().children().eq(4).html());
     $("#personnelModal").find("#postalCode").val($(obj).parent().parent().parent().children().eq(5).html());
+    console.log($(obj).parent().parent().parent().children().eq(6).html());
     $("#personnelModal").find("#telephoneNumber").val($(obj).parent().parent().parent().children().eq(6).html());
-    $("#personnelModal").find("#personnelCategory").val($(obj).parent().parent().parent().children().eq(7).html())
+    $("#personnelModal").find("#personnelCategory").val($(obj).parent().parent().parent().children().eq(7).html()).prop("selected", true);
 
     openModal("personnelModal")
+    editingPeronnel = obj
 }
 
 //get all personnel members
